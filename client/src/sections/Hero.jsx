@@ -26,13 +26,12 @@ export default function Hero() {
         </span>
       </h1>
 
-      <p className="max-w-[620px] mx-auto mt-12 text-[1.05rem] leading-[1.9] text-slate-400">
+      <p className="max-w-[620px] mx-auto mt-8 sm:mt-12 px-4 sm:px-0 text-sm sm:text-[1.05rem] leading-7 sm:leading-[1.9] text-slate-400 text-center sm:text-center">
         Most people have a goal in mind, but figuring out where to start is
         often the hardest part. Clario helps you break your goal into clear,
         practical steps, highlights potential challenges, and gives you a
         roadmap you can actually follow.
       </p>
-
       {/* <div className="flex flex-wrap justify-center gap-6 mt-9">
         <div className="flex items-center gap-2 text-sm text-[#8B90A8]">
           <span>⚡</span>

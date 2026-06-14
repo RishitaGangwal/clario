@@ -11,19 +11,12 @@ function App() {
     <div className="relative min-h-screen bg-[#0B0F19]">
       <StarField />
 
-      <div className="relative z-10 flex flex-col items-center px-5 pb-16">
+      <div className="relative z-10 flex flex-col items-center px-5">
         <Navbar />
-
         <Hero />
-
-        {/* Main Action */}
         <GoalInput />
-
-        {/* Supporting Sections */}
         <Features />
-
         <HowItWorks />
-
         <Footer />
       </div>
     </div>

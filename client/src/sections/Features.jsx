@@ -27,7 +27,7 @@ export default function Features() {
           Why Clario
         </p>
 
-        <h2 className="text-2xl sm:text-3xl font-semibold text-white">
+        <h2 className="text-xl sm:text-3xl font-semibold text-white">
           Simple tools to help you start
         </h2>
       </div>
