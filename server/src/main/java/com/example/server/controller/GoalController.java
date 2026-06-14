@@ -1,5 +1,9 @@
 package com.example.server.controller;
 
+import com.example.server.dto.GoalRequest;
+import com.example.server.dto.GoalResponse;
+import com.example.server.service.GoalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,43 +15,11 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class GoalController {
 
-    @PostMapping("/analyze")
-    public Map<String, Object> analyze(@RequestBody Map<String, Object> request){
+   @Autowired
+    private GoalService goalService;
 
-        String goal = (String) request.get("goal");
-
-        int success = 60;
-        if(goal.toLowerCase().contains("job")){
-            success = 70;
-        } else if(goal.toLowerCase().contains("startup")){
-            success = 40;
-        }
-
-        Map<String, Object> response = new HashMap<>();
-
-        response.put("goal", goal);
-
-        response.put("timeline", List.of(
-                "Start basics and fundamentals",
-                "Build 1 real project",
-                "Practice interviews"
-        ));
-
-        response.put("risks", List.of(
-                "Inconsistency",
-                "No real practice",
-                "Overthinking tutorials"
-        ));
-
-        response.put("suggestions", List.of(
-                "Study dails 2-3 hours",
-                "Build projects instead of watching tutorials",
-                "Revise weekly"
-        ));
-
-        response.put("successProbability", success);
-
-    return  response;
-
-    }
+   @PostMapping("/analyze")
+   public GoalResponse analyze(@RequestBody GoalRequest request){
+       return goalService.analyzeGoal(request);
+   }
 }
