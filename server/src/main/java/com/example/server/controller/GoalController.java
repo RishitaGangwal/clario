@@ -16,6 +16,13 @@ public class GoalController {
 
         String goal = (String) request.get("goal");
 
+        int success = 60;
+        if(goal.toLowerCase().contains("job")){
+            success = 70;
+        } else if(goal.toLowerCase().contains("startup")){
+            success = 40;
+        }
+
         Map<String, Object> response = new HashMap<>();
 
         response.put("goal", goal);
@@ -38,6 +45,7 @@ public class GoalController {
                 "Revise weekly"
         ));
 
+        response.put("successProbability", success);
 
     return  response;
 
