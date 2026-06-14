@@ -3,31 +3,28 @@ import StarField from "./effects/StarField";
 import Navbar from "./layout/Navbar";
 import HowItWorks from "./sections/HowItWorks";
 import Hero from "./sections/Hero";
+import Features from "./sections/Features";
+import Footer from "./layout/Footer";
 
 function App() {
   return (
     <div className="relative min-h-screen bg-[#0B0F19]">
       <StarField />
+
       <div className="relative z-10 flex flex-col items-center px-5 pb-16">
         <Navbar />
 
         <Hero />
 
-        {/* ── How it works ── */}
-        <HowItWorks />
-
-        {/* ── Main input + results ── */}
+        {/* Main Action */}
         <GoalInput />
 
-        {/* ── Feature cards ── */}
-        {/* <Features />
- 
+        {/* Supporting Sections */}
+        <Features />
+
+        <HowItWorks />
+
         <Footer />
-      */}
-
-        {/* <h1 className="text-4xl font-bold text-blue-400 mb-10">Clario 🚀</h1>
-
-        <GoalInput /> */}
       </div>
     </div>
   );
