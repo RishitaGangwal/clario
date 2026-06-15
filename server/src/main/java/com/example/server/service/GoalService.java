@@ -2,6 +2,7 @@ package com.example.server.service;
 
 import com.example.server.dto.GoalRequest;
 import com.example.server.dto.GoalResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,11 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class GoalService {
+
+    private final GeminiService geminiService;
 
     public GoalResponse analyzeGoal(GoalRequest request){
 
-        String goal = request.getGoal().toLowerCase();
+        String aiPrompt = geminiService.generatePlan(request.getGoal());
+
+        System.out.println(aiPrompt);
 
            List<String> timeline = List.of(
                     "Basics",
@@ -34,7 +40,7 @@ public class GoalService {
                     "Revise weekly"
             );
 
-        int success = goal.contains("job") ? 75 : 60;
+        int success = request.getGoal().toLowerCase().contains("job") ? 75 : 60;
 
             return  new GoalResponse(timeline,risks,suggestions,success);
 
