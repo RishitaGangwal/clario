@@ -19,9 +19,9 @@ public class GoalService {
 
     public GoalResponse analyzeGoal(GoalRequest request){
 
-        String aiPrompt = geminiService.generatePlan(request.getGoal());
+        String response = geminiService.generatePlan(request.getGoal());
 
-        System.out.println(aiPrompt);
+        System.out.println(response);
 
            List<String> timeline = List.of(
                     "Basics",
