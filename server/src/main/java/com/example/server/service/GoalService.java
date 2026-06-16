@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,33 +18,39 @@ import java.util.Map;
 public class GoalService {
 
     private final GeminiService geminiService;
+    private final ObjectMapper objectMapper;
 
-    public GoalResponse analyzeGoal(GoalRequest request){
+    public GoalResponse analyzeGoal(GoalRequest request) {
 
-        String response = geminiService.generatePlan(request.getGoal());
+        try {
 
-        System.out.println(response);
+            String response = geminiService.generatePlan(request.getGoal());
 
-           List<String> timeline = List.of(
-                    "Basics",
-                    "Project",
-                    "Apply"
+            JsonNode root = objectMapper.readTree(response);
+
+            String text = root.path("candidates")
+                    .get(0)
+                    .path("content")
+                    .path("parts")
+                    .get(0)
+                    .path("text")
+                    .toString();
+
+            text = text.replace("\"", "")
+                    .replace("```json", "")
+                    .replace("```", "")
+                    .trim();
+
+            return objectMapper.readValue(text, GoalResponse.class);
+
+        } catch (Exception e) {
+            return new GoalResponse(
+                    List.of("AI service temporarily unavailable"),
+                    List.of(),
+                    List.of("Please try again in a few moments"),
+                    0
             );
-
-        List<String> risks = List.of(
-                    "Inconsistency",
-                    "Burnout"
-            );
-
-        List<String> suggestions = List.of(
-                    "Study dails 2-3 hours",
-                    "Build projects instead of watching tutorials",
-                    "Revise weekly"
-            );
-
-        int success = request.getGoal().toLowerCase().contains("job") ? 75 : 60;
-
-            return  new GoalResponse(timeline,risks,suggestions,success);
-
         }
+
+    }
 }
