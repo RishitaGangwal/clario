@@ -1,4 +1,5 @@
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 const steps = [
   {
@@ -14,7 +15,7 @@ const steps = [
   {
     num: "03",
     label: "Move forward",
-    desc: "Follow the plan and adapt as you make progress",
+    desc: "Follow the plan and adapt as you grow ",
   },
 ];
 
@@ -23,7 +24,7 @@ export default function HowItWorks() {
     <section className="w-full max-w-5xl mx-auto px-5 sm:px-8 mt-20">
       {/* Header */}
       <div className="text-center mb-12">
-        <p className="text-xs tracking-widest uppercase text-gray-500 mb-3">
+        <p className="text-sm tracking-widest uppercase text-gray-500 mb-3">
           How it works
         </p>
         <h2 className="text-xl sm:text-3xl font-semibold text-white">
@@ -49,8 +50,8 @@ export default function HowItWorks() {
 
             {/* Arrow */}
             {index !== steps.length - 1 && (
-              <div className="hidden sm:block text-gray-600 text-xl px-3">
-                →
+              <div className="hidden sm:block text-gray-600 text-2xl px-3">
+                <FaArrowRight />
               </div>
             )}
           </div>

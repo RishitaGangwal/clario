@@ -8,15 +8,15 @@ import Footer from "./layout/Footer";
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-[#0B0F19]">
+    <div className="relative min-h-screen bg-[#0F172A]">
       <StarField />
 
       <div className="relative z-10 flex flex-col items-center px-5">
         <Navbar />
         <Hero />
         <GoalInput />
-        <Features />
         <HowItWorks />
+        <Features />
         <Footer />
       </div>
     </div>

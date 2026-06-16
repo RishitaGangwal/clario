@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { analyzeGoal } from "../api/api";
 import ResultCard from "./ResultCard";
+import { HiOutlineArrowTrendingUp } from "react-icons/hi2";
 
 const EXAMPLES = [
   "Get a job as a backend developer",
@@ -51,8 +52,8 @@ export default function GoalInput() {
           className="
       flex-1
       h-14 sm:h-16
-      bg-[#0f1117]
-      border border-[#1e2130]
+      bg-[#111827]
+      border border-[#1F2937]
       rounded-xl sm:rounded-2xl
       px-4 sm:px-6
       text-sm sm:text-[1.05rem]
@@ -103,11 +104,11 @@ export default function GoalInput() {
         py-1.5 sm:py-2
         rounded-full
         text-[12px] sm:text-[13px]
-        text-violet-300
-        bg-violet-500/10
-        border border-violet-500/20
-        hover:bg-violet-500/20
-        hover:border-violet-500/40
+       text-violet-300
+bg-violet-500/8
+border border-violet-500/15
+hover:bg-violet-500/15
+hover:border-violet-500/30
         transition-all
         whitespace-nowrap
       "
@@ -120,7 +121,7 @@ export default function GoalInput() {
       {/* Empty state */}
       {!loading && !result && !error && (
         <div className="mt-8 sm:mt-10 text-center flex flex-col items-center px-4 sm:px-0">
-          <span className="text-3xl sm:text-4xl mb-3">🗺️</span>
+          <HiOutlineArrowTrendingUp className="text-3xl sm:text-4xl mb-3 text-indigo-400" />
 
           <p className="text-base sm:text-lg font-semibold text-[#A1A7C4] leading-snug sm:leading-normal">
             Type your goal above and hit "Build my plan"
