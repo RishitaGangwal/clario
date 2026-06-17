@@ -35,17 +35,19 @@ export default function HowItWorks() {
       {/* Steps */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-10 sm:gap-6">
         {steps.map((s, index) => (
-          <div className="flex flex-col sm:flex-row items-center w-full">
-            <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-10 h-10 rounded-full bg-[#1a1d2b] border border-[#2a2f45] flex items-center justify-center text-white font-semibold mb-3">
-                {s.num}
+          <div key={index}>
+            <div className="flex flex-col sm:flex-row items-center w-full">
+              <div className="flex flex-col items-center text-center flex-1">
+                <div className="w-10 h-10 rounded-full bg-[#1a1d2b] border border-[#2a2f45] flex items-center justify-center text-white font-semibold mb-3">
+                  {s.num}
+                </div>
+
+                <h3 className="text-white font-medium">{s.label}</h3>
+
+                <p className="text-sm text-gray-500 mt-1 max-w-[200px] sm:max-w-[160px]">
+                  {s.desc}
+                </p>
               </div>
-
-              <h3 className="text-white font-medium">{s.label}</h3>
-
-              <p className="text-sm text-gray-500 mt-1 max-w-[200px] sm:max-w-[160px]">
-                {s.desc}
-              </p>
             </div>
 
             {/* Arrow */}

@@ -126,11 +126,11 @@ export default function ResultCard({ result }) {
       >
         <div className="flex-1 min-w-0">
           <p className="font-mono text-xs text-[#5a5f7a] uppercase tracking-widest mb-1">
-            Here's your step-by-step plan 🎯
+            Your personalized roadmap
           </p>
           <h2 className="text-lg font-semibold text-white leading-snug">
             {result.motivation ||
-              "You've already done the hardest part — deciding to start."}
+              "A practical path based on your goal and current assumptions."}
           </h2>
         </div>
         {result.successProbability > 0 && (

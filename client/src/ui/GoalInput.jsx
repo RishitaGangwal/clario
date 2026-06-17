@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { analyzeGoal } from "../api/api";
 import ResultCard from "./ResultCard";
 import { HiOutlineArrowTrendingUp } from "react-icons/hi2";
+import { FaDraftingCompass } from "react-icons/fa";
 
 const EXAMPLES = [
   "Get a job as a backend developer",
@@ -25,7 +26,13 @@ export default function GoalInput() {
       setResult(res.data);
     } catch (err) {
       console.error(err);
-      setError("Something went wrong — please try again in a moment.");
+
+      setResult(null);
+
+      setError(
+        err?.response?.data?.message ||
+          "AI service is currently busy. Please try again later.",
+      );
     } finally {
       setLoading(false);
     }
@@ -121,7 +128,7 @@ hover:border-violet-500/30
       {/* Empty state */}
       {!loading && !result && !error && (
         <div className="mt-8 sm:mt-10 text-center flex flex-col items-center px-4 sm:px-0">
-          <HiOutlineArrowTrendingUp className="text-3xl sm:text-4xl mb-3 text-indigo-400" />
+          <FaDraftingCompass className="text-3xl sm:text-4xl mb-3 text-indigo-400" />
 
           <p className="text-base sm:text-lg font-semibold text-[#A1A7C4] leading-snug sm:leading-normal">
             Type your goal above and hit "Build my plan"
@@ -140,7 +147,7 @@ hover:border-violet-500/30
         <div className="mt-8 flex flex-col items-center gap-3">
           <div className="w-11 h-11 rounded-full border-[3px] border-[#1e2130] border-t-violet-500 animate-spin" />
           <p className="text-sm font-mono text-[#5a5f7a]">
-            Building your roadmap — just a few seconds…
+            Mapping the best path to your goal...
           </p>
         </div>
       )}
@@ -153,7 +160,7 @@ hover:border-violet-500/30
       )}
 
       {/* Result */}
-      <ResultCard result={result} />
+      {!error && result && <ResultCard result={result} />}
     </div>
   );
 }

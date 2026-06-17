@@ -44,12 +44,7 @@ public class GoalService {
             return objectMapper.readValue(text, GoalResponse.class);
 
         } catch (Exception e) {
-            return new GoalResponse(
-                    List.of("AI service temporarily unavailable"),
-                    List.of(),
-                    List.of("Please try again in a few moments"),
-                    0
-            );
+           throw new RuntimeException("Gemini service is currently unavailable.",e);
         }
 
     }
