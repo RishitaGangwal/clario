@@ -130,7 +130,7 @@ export default function ResultCard({ result }) {
           </p>
           <h2 className="text-lg font-semibold text-white leading-snug">
             {result.motivation ||
-              "A practical path based on your goal and current assumptions."}
+              "An AI-generated action plan tailored to your goal.."}
           </h2>
         </div>
         {result.successProbability > 0 && (
@@ -151,25 +151,32 @@ export default function ResultCard({ result }) {
 
       {/* Keep an eye on these */}
       <div style={{ borderBottom: "1px solid #1e2130" }}>
-        <SectionBlock
-          color="text-amber-400"
-          dot="bg-amber-400"
-          title="Keep an eye on these"
-          desc="Know these going in and you'll stay ahead."
-          items={result.risks || result.challenges || []}
-        />
+        {result.risks?.length > 0 && (
+          <div style={{ borderBottom: "1px solid #1e2130" }}>
+            <SectionBlock
+              color="text-amber-400"
+              dot="bg-amber-400"
+              title="Keep an eye on these"
+              desc="Know these going in and you'll stay ahead."
+              items={result.risks}
+            />
+          </div>
+        )}
       </div>
 
       {/* Tips */}
       <div style={{ borderBottom: "1px solid #1e2130" }}>
-        <SectionBlock
-          color="text-blue-400"
-          dot="bg-blue-400"
-          title="Tips to boost your chances"
-          desc="Pick even 2–3 of these and you're already ahead."
-          items={result.suggestions}
-          // twoCol
-        />
+        {result.suggestions?.length > 0 && (
+          <div style={{ borderBottom: "1px solid #1e2130" }}>
+            <SectionBlock
+              color="text-blue-400"
+              dot="bg-blue-400"
+              title="Tips to boost your chances"
+              desc="Pick even 2–3 of these and you're already ahead."
+              items={result.suggestions}
+            />
+          </div>
+        )}
       </div>
 
       {/* Footer */}

@@ -28,23 +28,23 @@ public class GoalService {
 
             JsonNode root = objectMapper.readTree(response);
 
-            String text = root.path("candidates")
-                    .get(0)
-                    .path("content")
-                    .path("parts")
-                    .get(0)
-                    .path("text")
-                    .toString();
+            String text = root.at("/candidates/0/content/parts/0/text").asText();
 
-            text = text.replace("\"", "")
-                    .replace("```json", "")
+            System.out.println("TEXT FROM GEMINI:");
+            System.out.println(text);
+
+            text = text.replace("```json", "")
                     .replace("```", "")
                     .trim();
+
+            System.out.println("CLEAN JSON:");
+            System.out.println(text);
 
             return objectMapper.readValue(text, GoalResponse.class);
 
         } catch (Exception e) {
-           throw new RuntimeException("Gemini service is currently unavailable.",e);
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }

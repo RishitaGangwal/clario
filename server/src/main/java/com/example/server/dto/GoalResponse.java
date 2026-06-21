@@ -14,5 +14,5 @@ public class GoalResponse {
     private List<String> timeline;
     private List<String> risks;
     private List<String> suggestions;
-    private int successProbability;
+    private double successProbability;
 }
